@@ -13,38 +13,40 @@
       <img src="./images/logo.svg" alt="logo" />
     </header>
     <main class="main">
-      <div class="container">
-        <section class="bill">
-          <h2>Bill</h2>
-          <input type="number" id="bill" aria-label="bill" />
-        </section>
-        <section class="tip">
-          <h2>Select Tip %</h2>
-          <ul>
-            <li>
-              <button type="button" data-tip="5">5%</button>
-            </li>
-            <li>
-              <button type="button" data-tip="10">10%</button>
-            </li>
-            <li>
-              <button type="button" data-tip="15">15%</button>
-            </li>
-            <li>
-              <button type="button" data-tip="25">25%</button>
-            </li>
-            <li>
-              <button type="button" data-tip="50">50%</button>
-            </li>
-            <li>
-              <input type="number" id="custom-tip" aria-label="custom tip" />
-            </li>
-          </ul>
-        </section>
-        <section class="people">
-          <h2>Number of People</h2>
-          <input type="number" id="people" aria-label="number of people" />
-        </section>
+      <div class="calculator">
+        <div class="container">
+          <section class="bill">
+            <h2>Bill</h2>
+            <input type="number" id="bill" aria-label="bill" placeholder="0" />
+          </section>
+          <section class="tip">
+            <h2>Select Tip %</h2>
+            <ul>
+              <li>
+                <button type="button" data-tip="5">5%</button>
+              </li>
+              <li>
+                <button type="button" data-tip="10">10%</button>
+              </li>
+              <li>
+                <button type="button" data-tip="15">15%</button>
+              </li>
+              <li>
+                <button type="button" data-tip="25">25%</button>
+              </li>
+              <li>
+                <button type="button" data-tip="50">50%</button>
+              </li>
+              <li>
+                <input type="number" id="custom-tip" aria-label="custom tip" />
+              </li>
+            </ul>
+          </section>
+          <section class="people">
+            <h2>Number of People</h2>
+            <input type="number" id="people" aria-label="number of people" />
+          </section>
+        </div>
         <section class="result">
           <h2>Tip Amount</h2>
           <p id="tip-amount">$0.00</p>
