@@ -4,12 +4,15 @@
   --clr-text-base: #637778;
   --clr-text-error: #b47c6d;
   --clr-text-label: #4c8386;
+  --clr-text-placeholder: #a0bcbc;
 
   /* Backround colors */
   --clr-body-bg: #c5e4e7;
   --clr-calculator-bg: #fff;
+  --clr-result-bg: #00474b;
 
   /* Input colors */
+  --clr-input-bg-base: #f3f8fb;
   --clr-input-text-base: #003f41;
   --clr-input-border-active: #5faba1;
   --clr-input-border-error: #b47c6d;
@@ -22,4 +25,125 @@
   --clr-button-text-base: #fff;
   --clr-button-text-hover: #003f41;
   --clr-button-text-active: #003f41;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--clr-body-bg);
+  font-family: var(--ff-primary);
+  font-size: 1.125rem;
+  color: var(--clr-text-base);
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 25%;
+  padding-top: 2rem;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 1rem;
+}
+
+.calculator {
+  background-color: var(--clr-calculator-bg);
+  display: flex;
+  border-radius: 1rem;
+  padding: 1rem;
+  height: 20rem;
+  width: 100%;
+  max-width: 42rem;
+  gap: 1.5rem;
+}
+
+.calculator h2 {
+  font-size: 0.875rem;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bill input::-webkit-outer-spin-button,
+.bill input::-webkit-inner-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.bill input {
+  border: none;
+  outline: none;
+  background: none;
+  position: relative;
+  width: 100%;
+  background: url("./images/icon-dollar.svg") no-repeat left center;
+  background-color: var(--clr-input-bg-base);
+  text-align: right;
+  padding: 0.5rem 1rem;
+}
+
+.bill input::placeholder {
+  color: var(--clr-text-placeholder);
+  margin-left: 1rem;
+}
+
+.tip ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.tip ul li {
+  list-style: none;
+  width: clamp(4rem, 5.9rem, 100%);
+}
+
+.tip button {
+  background-color: var(--clr-button-bg-base);
+  color: var(--clr-button-text-base);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 600;
+  width: 100%;
+}
+
+.tip button:active,
+.tip button:hover {
+  background-color: var(--clr-button-bg-active);
+  color: var(--clr-button-text-active);
+}
+
+.tip input {
+  width: 100%;
+}
+
+.result {
+  background-color: var(--clr-result-bg);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 100%;
 }
