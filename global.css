@@ -1,0 +1,25 @@
+:root {
+  /* Typography */
+  --ff-primary: "Space Mono", monospace;
+  --clr-text-base: #637778;
+  --clr-text-error: #b47c6d;
+  --clr-text-label: #4c8386;
+
+  /* Backround colors */
+  --clr-body-bg: #c5e4e7;
+  --clr-calculator-bg: #fff;
+
+  /* Input colors */
+  --clr-input-text-base: #003f41;
+  --clr-input-border-active: #5faba1;
+  --clr-input-border-error: #b47c6d;
+
+  /* Button colors */
+  --clr-button-bg-base: #00474b;
+  --clr-button-bg-hover: #9fe8df;
+  --clr-button-bg-active: #9fe8df;
+
+  --clr-button-text-base: #fff;
+  --clr-button-text-hover: #003f41;
+  --clr-button-text-active: #003f41;
+}
