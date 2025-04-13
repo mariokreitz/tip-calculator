@@ -7,7 +7,7 @@
   /* Typography */
   --ff-primary: "Space Mono", monospace;
   --clr-text-base: #637778;
-  --clr-text-error: #b47c6d;
+  --clr-text-error: #ff5656;
   --clr-text-label: #4c8386;
   --clr-text-placeholder: #a0bcbc;
   --clr-cursor: #26c0ab;
@@ -78,7 +78,7 @@ body {
 }
 
 .calculator h2 {
-  font-size: 0.875rem;
+  font-size: 0.7rem;
 }
 
 .container {
@@ -181,6 +181,51 @@ body {
 
 .tip input:active,
 .tip input:focus {
+  border: 2px solid var(--clr-input-border-active);
+}
+
+.people h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+}
+
+.people h2 span {
+  color: var(--clr-text-error);
+}
+
+.people input::-webkit-outer-spin-button,
+.people input::-webkit-inner-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.people input {
+  border: none;
+  outline: none;
+  background: none;
+  width: 100%;
+  height: 100%;
+  background-color: var(--clr-input-bg-base);
+  text-align: right;
+  font-weight: 600;
+  border: solid 2px transparent;
+  border-radius: 0.25rem;
+  padding-right: 0.5rem;
+  color: var(--clr-input-text-base);
+  caret-color: var(--clr-cursor);
+  margin-block: 0.5rem;
+  height: 2.4rem;
+}
+
+.people input::placeholder {
+  color: var(--clr-text-placeholder);
+}
+
+.people input:active,
+.people input:focus {
   border: 2px solid var(--clr-input-border-active);
 }
 
