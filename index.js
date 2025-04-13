@@ -7,8 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
 const init = () => {
   const { billElement, buttonElements, peopleElement, timAmountElement, totalAmountElement, resetButton } = getAllDOMElements();
 
-  const calculator = new Calculator(billElement, buttonElements, peopleElement, timAmountElement, totalAmountElement, resetButton);
-  calculator.init();
+  const tipCalculator = new Calculator();
+  tipCalculator.init(billElement, buttonElements, peopleElement, timAmountElement, totalAmountElement, resetButton);
+  tipCalculator.addListeners();
 };
 
 const getAllDOMElements = () => {
