@@ -156,7 +156,8 @@ body {
 }
 
 .tip button:active,
-.tip button:hover {
+.tip button:hover,
+.tip button.active {
   background-color: var(--clr-button-bg-active);
   color: var(--clr-button-text-active);
 }
