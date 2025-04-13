@@ -38,21 +38,31 @@
                 <button type="button" data-tip="50">50%</button>
               </li>
               <li>
-                <input type="number" id="custom-tip" aria-label="custom tip" placeholder="CUSTOM" />
+                <input type="number" id="custom-tip" aria-label="custom tip" placeholder="Custom" />
               </li>
             </ul>
           </section>
           <section class="people">
-            <h2>Number of People <span class="error-message hidden">Can&apos;t be zero</span></h2>
+            <h2>Number of People <span class="error-message d_none">Can&apos;t be zero</span></h2>
             <input type="number" id="people" aria-label="number of people" min="0" value="1" placeholder="0" />
           </section>
         </div>
         <section class="result">
-          <h2>Tip Amount</h2>
-          <p id="tip-amount">$0.00</p>
-          <h2>Total</h2>
-          <p id="total">$0.00</p>
-          <button type="button" id="reset">Reset</button>
+          <div class="tip-amount">
+            <h2>
+              Tip Amount <br />
+              <span>/ person</span>
+            </h2>
+            <p id="tip-amount">$0.00</p>
+          </div>
+          <div class="total">
+            <h2>
+              Total <br />
+              <span>/ person</span>
+            </h2>
+            <p id="total">$0.00</p>
+          </div>
+          <button type="button" id="reset" disabled>Reset</button>
         </section>
       </div>
     </main>
