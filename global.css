@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Space Mono";
+  src: url("./font/SpaceMono-Regular.ttf") format("truetype");
+}
+
 :root {
   /* Typography */
   --ff-primary: "Space Mono", monospace;
@@ -5,6 +10,7 @@
   --clr-text-error: #b47c6d;
   --clr-text-label: #4c8386;
   --clr-text-placeholder: #a0bcbc;
+  --clr-cursor: #26c0ab;
 
   /* Backround colors */
   --clr-body-bg: #c5e4e7;
@@ -14,7 +20,7 @@
   /* Input colors */
   --clr-input-bg-base: #f3f8fb;
   --clr-input-text-base: #003f41;
-  --clr-input-border-active: #5faba1;
+  --clr-input-border-active: #26c0ab;
   --clr-input-border-error: #b47c6d;
 
   /* Button colors */
@@ -102,10 +108,19 @@ body {
   padding: 0.5rem 1rem;
   color: var(--clr-input-text-base);
   font-family: inherit;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  border: solid 2px transparent;
 }
 
 .bill input::placeholder {
   color: var(--clr-text-placeholder);
+}
+
+.bill input:active,
+.bill input:focus {
+  border: 2px solid var(--clr-input-border-active);
+  border-radius: 0.5rem;
 }
 
 .tip ul {
@@ -154,6 +169,15 @@ body {
   height: 100%;
   background-color: var(--clr-input-bg-base);
   text-align: right;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: solid 2px transparent;
+  padding-left: 0.5rem;
+}
+
+.tip input:active,
+.tip input:focus {
+  border: 2px solid var(--clr-input-border-active);
   border-radius: 0.5rem;
 }
 
