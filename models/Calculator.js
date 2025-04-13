@@ -56,12 +56,12 @@ class Calculator {
   }
 
   _calculateTip({ target }) {
-    const numberOfPeople = parseInt(this.peopleElement.value, 10);
+    const numberOfPeople = Number(this.peopleElement.value);
     this._validateUserInput(numberOfPeople, target);
 
-    const discountValue = this.DISCOUNT[target.dataset.discount] || parseFloat(target.value) / 100;
-    const billAmount = parseFloat(this.billElement.value) || 0;
-    const tipPerPerson = (billAmount * discountValue) / numberOfPeople;
+    const discount = this.DISCOUNT[target.dataset.discount] || Number(target.value) / 100;
+    const billAmount = Number(this.billElement.value) || 0;
+    const tipPerPerson = (billAmount * discount) / numberOfPeople;
 
     this.tipAmountElement.textContent = `$${tipPerPerson.toFixed(2)}`;
     this.totalAmountElement.textContent = `$${(billAmount + tipPerPerson).toFixed(2)}`;
