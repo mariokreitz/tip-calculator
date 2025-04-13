@@ -111,6 +111,8 @@ body {
   font-weight: 600;
   margin-top: 0.5rem;
   border: solid 2px transparent;
+  caret-color: var(--clr-cursor);
+  border-radius: 0.25rem;
 }
 
 .bill input::placeholder {
@@ -120,7 +122,6 @@ body {
 .bill input:active,
 .bill input:focus {
   border: 2px solid var(--clr-input-border-active);
-  border-radius: 0.5rem;
 }
 
 .tip ul {
@@ -172,13 +173,15 @@ body {
   border-radius: 0.5rem;
   font-weight: 600;
   border: solid 2px transparent;
-  padding-left: 0.5rem;
+  border-radius: 0.25rem;
+  padding-right: 0.5rem;
+  color: var(--clr-input-text-base);
+  caret-color: var(--clr-cursor);
 }
 
 .tip input:active,
 .tip input:focus {
   border: 2px solid var(--clr-input-border-active);
-  border-radius: 0.5rem;
 }
 
 .result {
