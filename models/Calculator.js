@@ -52,23 +52,36 @@ class Calculator {
     });
   }
 
-  _calculateTip({ target }) {
+  _calculateTip(event) {
+    const { target } = event;
+    const numberOfPeople = Number(this.peopleElement.value);
+
     this._resetActiveButton();
     target.classList.add("active");
 
-    const numberOfPeople = Number(this.peopleElement.value);
-
     this._validateUserInput(numberOfPeople, target);
 
-    const discount = this.DISCOUNT[target.dataset.discount] || Number(target.value) / 100;
+    const discount = this._getDiscount(target);
     const billAmount = Number(this.billElement.value) || 0;
-    const tipPerPerson = isNaN((billAmount * discount) / numberOfPeople) ? 0 : (billAmount * discount) / numberOfPeople;
-    const totalAmountPerPerson = isNaN(billAmount / numberOfPeople + tipPerPerson) ? 0 : billAmount / numberOfPeople + tipPerPerson;
+    const tipPerPerson = this._calculateTipPerPerson(billAmount, discount, numberOfPeople);
+    const totalAmountPerPerson = this._calculateTotalAmountPerPerson(billAmount, tipPerPerson, numberOfPeople);
 
     this.tipAmountElement.textContent = `$${tipPerPerson.toFixed(2)}`;
     this.totalAmountElement.textContent = `$${totalAmountPerPerson.toFixed(2)}`;
 
     this.resetButton.disabled = false;
+  }
+
+  _getDiscount(target) {
+    return this.DISCOUNT[target.dataset.discount] || Number(target.value) / 100;
+  }
+
+  _calculateTipPerPerson(billAmount, discount, numberOfPeople) {
+    return isNaN((billAmount * discount) / numberOfPeople) ? 0 : (billAmount * discount) / numberOfPeople;
+  }
+
+  _calculateTotalAmountPerPerson(billAmount, tipPerPerson, numberOfPeople) {
+    return isNaN(billAmount / numberOfPeople + tipPerPerson) ? 0 : billAmount / numberOfPeople + tipPerPerson;
   }
 
   _resetActiveButton() {
@@ -131,6 +144,7 @@ class Calculator {
   _addChangeListeners() {
     this.customTipElement.addEventListener("keyup", (e) => this._calculateTip(e));
     this.peopleElement.addEventListener("keyup", (e) => this._calculateTip(e));
+    this.billElement.addEventListener("keyup", (e) => this._calculateTip(e));
   }
 }
 
