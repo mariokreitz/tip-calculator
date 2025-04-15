@@ -56,7 +56,11 @@ class Calculator {
   }
 
   _calculateTip({ target }) {
+    this._resetActiveButton();
+    target.classList.add("active");
+
     const numberOfPeople = Number(this.peopleElement.value);
+
     this._validateUserInput(numberOfPeople, target);
 
     const discount = this.DISCOUNT[target.dataset.discount] || Number(target.value) / 100;
@@ -68,6 +72,10 @@ class Calculator {
     this.totalAmountElement.textContent = `$${totalAmountPerPerson.toFixed(2)}`;
 
     this.resetButton.disabled = false;
+  }
+
+  _resetActiveButton() {
+    this.buttonElements.forEach((button) => button.classList.remove("active"));
   }
 
   _validateUserInput(numberOfPeople, targetElement) {
@@ -114,6 +122,8 @@ class Calculator {
     this.tipAmountElement.textContent = "$0.00";
     this.totalAmountElement.textContent = "$0.00";
     this.resetButton.disabled = true;
+    this._resetActiveButton();
+    this._hideError();
   }
 
   _addClickListeners() {
