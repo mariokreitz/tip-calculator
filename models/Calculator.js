@@ -62,8 +62,8 @@ class Calculator {
 
     const discount = this.DISCOUNT[target.dataset.discount] || Number(target.value) / 100;
     const billAmount = Number(this.billElement.value) || 0;
-    const tipPerPerson = (billAmount * discount) / numberOfPeople;
-    const totalAmountPerPerson = billAmount / numberOfPeople + tipPerPerson;
+    const tipPerPerson = isNaN((billAmount * discount) / numberOfPeople) ? 0 : (billAmount * discount) / numberOfPeople;
+    const totalAmountPerPerson = isNaN(billAmount / numberOfPeople + tipPerPerson) ? 0 : billAmount / numberOfPeople + tipPerPerson;
 
     this.tipAmountElement.textContent = `$${tipPerPerson.toFixed(2)}`;
     this.totalAmountElement.textContent = `$${totalAmountPerPerson.toFixed(2)}`;
@@ -130,6 +130,7 @@ class Calculator {
 
   _addChangeListeners() {
     this.customTipElement.addEventListener("keyup", (e) => this._calculateTip(e));
+    this.peopleElement.addEventListener("keyup", (e) => this._calculateTip(e));
   }
 }
 
