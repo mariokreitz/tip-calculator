@@ -298,3 +298,15 @@ body {
 .d_none {
   display: none;
 }
+
+@media screen and (max-width: 48rem) {
+  .calculator {
+    flex-direction: column;
+    height: 100%;
+    max-width: 20rem;
+  }
+
+  .container {
+    gap: 2rem;
+  }
+}
