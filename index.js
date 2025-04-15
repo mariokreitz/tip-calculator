@@ -19,7 +19,6 @@ const init = () => {
     resetButton,
     errorElement
   );
-  tipCalculator.start();
 };
 
 const getAllDOMElements = () => {
