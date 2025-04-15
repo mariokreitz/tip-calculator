@@ -73,7 +73,7 @@ class Calculator {
   }
 
   _getDiscount(target) {
-    return this.DISCOUNT[target.dataset.discount] || Number(target.value) / 100;
+    return target.id === "bill" ? 0 : this.DISCOUNT[target.dataset.discount] || Number(target.value) / 100;
   }
 
   _calculateTipPerPerson(billAmount, discount, numberOfPeople) {
