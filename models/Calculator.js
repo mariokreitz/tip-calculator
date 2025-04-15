@@ -27,6 +27,8 @@ class Calculator {
     this.errorElement = errorElement;
     this._checkElements();
     this._buttonSetup();
+    this._addClickListeners();
+    this._addChangeListeners();
 
     console.info("Calculator initialized");
   }
@@ -48,11 +50,6 @@ class Calculator {
       button.textContent = `${discount}%`;
       button.dataset.discount = discount;
     });
-  }
-
-  start() {
-    this._addClickListeners();
-    this._addChangeListeners();
   }
 
   _calculateTip({ target }) {
