@@ -58,7 +58,6 @@ class Calculator {
 
     this._resetActiveButton();
     target.classList.add("active");
-
     if (!this._isValidUserInput(numberOfPeople, target)) {
       this._resetCalculator();
       return;
@@ -103,28 +102,16 @@ class Calculator {
     const isPeopleValid = people > 0;
     const isDiscountValid = this._isValidDiscount(target) || Number(this.customTipElement.value) > 0 || this.customTipElement.value === "";
 
-    console.log("Bill Valid:", isBillValid);
-    console.log("People Valid:", isPeopleValid);
-    console.log("Discount Valid:", isDiscountValid);
-
     if (!isPeopleValid) {
       this._showError();
-      console.log("Error: Number of people must be greater than 0.");
       return false;
     }
-
     this._hideError();
 
     const isCustomTip = target.id === "custom-tip";
-    console.log("Custom Tip:", isCustomTip);
-
-    if (!isCustomTip) {
-      this._resetCustomTip();
-      console.log("Custom tip reset.");
-    }
+    if (!isCustomTip) this._resetCustomTip();
 
     const result = isBillValid && isDiscountValid;
-    console.log("User Input Valid:", result);
 
     return result;
   }
