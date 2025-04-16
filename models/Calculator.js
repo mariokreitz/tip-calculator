@@ -54,14 +54,7 @@ class Calculator {
 
   _calculateTip({ target }) {
     const numberOfPeople = Number(this.peopleElement.value);
-    const isValidInput = this._isValidUserInput(numberOfPeople, target);
-
-    if (!isValidInput) {
-      this._showError(this.billElement);
-      return;
-    }
-
-    this._hideError(this.billElement);
+    this._isValidUserInput(numberOfPeople, target);
 
     const discount = this._getDiscount(target);
     const billAmount = Number(this.billElement.value) || 0;
@@ -98,15 +91,19 @@ class Calculator {
   }
 
   _isValidUserInput(people, target) {
-    const isBillValid = Number(this.billElement.value) >= 0;
+    const isBillValid = this._isValidBill();
     const isPeopleValid = people > 0;
     const isDiscountValid = this._isValidDiscount(target) || Number(this.customTipElement.value) > 0 || this.customTipElement.value === "";
 
     if (!isPeopleValid) {
       this._showError(this.peopleElement);
       return false;
-    }
-    this._hideError(this.peopleElement);
+    } else this._hideError(this.peopleElement);
+
+    if (!isBillValid) {
+      this._showError(this.billElement);
+      return false;
+    } else this._hideError(this.billElement);
 
     const isCustomTip = target.id === "custom-tip";
     if (!isCustomTip) this._resetCustomTip();
@@ -116,14 +113,20 @@ class Calculator {
     return result;
   }
 
-  _showError(element) {
-    if (!this.peopleElement.value) this.errorElement.classList.remove("d_none");
-    element.style.border = "1px solid #ff5656";
+  _isValidBill() {
+    const billPattern = /^\d+(\.\d{0,2})?$/;
+    const bill = this.billElement.value.trim();
+    return billPattern.test(bill) && parseFloat(bill) > 0;
   }
 
-  _hideError(element) {
+  _showError(element = null) {
+    if (!this.peopleElement.value) this.errorElement.classList.remove("d_none");
+    if (element) element.style.border = "1px solid #ff5656";
+  }
+
+  _hideError(element = null) {
     this.errorElement.classList.add("d_none");
-    element.style.border = "none";
+    if (element) element.style.border = "";
   }
 
   _isValidDiscount(target) {
@@ -145,7 +148,7 @@ class Calculator {
     this.totalAmountElement.textContent = "$0.00";
     this.resetButton.disabled = true;
     this._resetActiveButton();
-    this._hideError();
+    this._hideError(this.billElement);
   }
 
   _addClickListeners() {
