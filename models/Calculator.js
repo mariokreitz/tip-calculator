@@ -59,11 +59,14 @@ class Calculator {
     this._resetActiveButton();
     target.classList.add("active");
 
-    this._validateUserInput(numberOfPeople, target);
+    if (!this._isValidUserInput(numberOfPeople, target)) return;
 
     const discount = this._getDiscount(target);
+
     const billAmount = Number(this.billElement.value) || 0;
+
     const tipPerPerson = this._calculateTipPerPerson(billAmount, discount, numberOfPeople);
+
     const totalAmountPerPerson = this._calculateTotalAmountPerPerson(billAmount, tipPerPerson, numberOfPeople);
 
     this.tipAmountElement.textContent = `$${tipPerPerson.toFixed(2)}`;
@@ -72,36 +75,46 @@ class Calculator {
     this.resetButton.disabled = false;
   }
 
-  _getDiscount(target) {
-    return target.id === "bill" ? 0 : this.DISCOUNT[target.dataset.discount] || Number(target.value) / 100;
+  _getDiscount({ id, dataset: { discount }, value }) {
+    if (id === "people") {
+      this._resetCustomTip();
+      return;
+    }
+    if (id === "bill") return 0;
+    const discountValue = this.DISCOUNT[discount];
+    return discountValue !== undefined ? discountValue : Number(value) / 100;
   }
 
-  _calculateTipPerPerson(billAmount, discount, numberOfPeople) {
-    return isNaN((billAmount * discount) / numberOfPeople) ? 0 : (billAmount * discount) / numberOfPeople;
+  _calculateTipPerPerson(bill, discountRate, people) {
+    const tip = (bill * discountRate) / people;
+    return isNaN(tip) ? 0 : tip;
   }
 
   _calculateTotalAmountPerPerson(billAmount, tipPerPerson, numberOfPeople) {
     const total = billAmount / numberOfPeople + tipPerPerson;
-    return isNaN(total) || total === Infinity ? 0 : total;
+    return isNaN(total) || !isFinite(total) ? 0 : total;
   }
 
   _resetActiveButton() {
     this.buttonElements.forEach((button) => button.classList.remove("active"));
   }
 
-  _validateUserInput(numberOfPeople, targetElement) {
-    const isCustomTip = targetElement.id === "custom-tip";
+  _isValidUserInput(people, target) {
+    const isBillValid = Number(this.billElement.value) > 0;
+    const isPeopleValid = people > 0;
+    const isDiscountValid = this._isValidDiscount(target) || Number(this.customTipElement.value) > 0 || this.customTipElement.value === "";
 
-    if (numberOfPeople <= 0) {
+    if (!isPeopleValid) {
       this._showError();
-      return;
-    } else this._hideError();
+      return false;
+    }
 
-    if (this.billElement.value <= 0) return;
+    this._hideError();
 
-    if (!this._isValidDiscount(targetElement)) return;
-
+    const isCustomTip = target.id === "custom-tip";
     if (!isCustomTip) this._resetCustomTip();
+
+    return isBillValid && isDiscountValid;
   }
 
   _showError() {
@@ -116,10 +129,9 @@ class Calculator {
 
   _isValidDiscount(target) {
     const isCustomTip = target.id === "custom-tip";
-    if (isCustomTip) return true;
+    const discountValue = isCustomTip ? Number(target.value) : target.dataset.discount;
 
-    const discount = target.dataset.discount;
-    return this.DISCOUNT[discount] !== undefined;
+    return isFinite(discountValue) && discountValue > 0 ? discountValue : 0;
   }
 
   _resetCustomTip() {
