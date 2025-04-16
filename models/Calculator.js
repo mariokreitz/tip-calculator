@@ -54,7 +54,7 @@ class Calculator {
 
   _calculateTip(event) {
     const { target } = event;
-    const numberOfPeople = Number(this.peopleElement.value);
+    const numberOfPeople = Number(this.peopleElement.value) || 1;
 
     this._resetActiveButton();
     target.classList.add("active");
@@ -138,9 +138,9 @@ class Calculator {
   }
 
   _resetCalculator() {
-    this.billElement.value = 0;
+    this.billElement.value = "";
     this.customTipElement.value = "";
-    this.peopleElement.value = 1;
+    this.peopleElement.value = "";
     this.tipAmountElement.textContent = "$0.00";
     this.totalAmountElement.textContent = "$0.00";
     this.resetButton.disabled = true;
