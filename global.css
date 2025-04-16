@@ -309,4 +309,8 @@ body {
   .container {
     gap: 2rem;
   }
+
+  .tip ul li {
+    width: clamp(4rem, 8.25rem, 100%);
+  }
 }
