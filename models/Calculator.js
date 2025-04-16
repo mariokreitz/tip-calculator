@@ -52,17 +52,16 @@ class Calculator {
     });
   }
 
-  _calculateTip(event) {
-    const { target } = event;
+  _calculateTip({ target }) {
     const numberOfPeople = Number(this.peopleElement.value);
+    const isValidInput = this._isValidUserInput(numberOfPeople, target);
 
-    this._resetActiveButton();
-    target.classList.add("active");
-    if (!this._isValidUserInput(numberOfPeople, target)) {
-      // this._resetCalculator();
-      this.billElement.style.border = "1px solid #ff5656";
+    if (!isValidInput) {
+      this._showError(this.billElement);
       return;
     }
+
+    this._hideError(this.billElement);
 
     const discount = this._getDiscount(target);
     const billAmount = Number(this.billElement.value) || 0;
@@ -118,7 +117,7 @@ class Calculator {
   }
 
   _showError(element) {
-    this.errorElement.classList.remove("d_none");
+    if (!this.peopleElement.value) this.errorElement.classList.remove("d_none");
     element.style.border = "1px solid #ff5656";
   }
 
