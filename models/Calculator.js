@@ -54,12 +54,12 @@ class Calculator {
 
   _calculateTip(event) {
     const { target } = event;
-    const numberOfPeople = Number(this.peopleElement.value) || 1;
+    const numberOfPeople = Number(this.peopleElement.value);
 
     this._resetActiveButton();
     target.classList.add("active");
     if (!this._isValidUserInput(numberOfPeople, target)) {
-      this._resetCalculator();
+      // this._resetCalculator();
       return;
     }
 
