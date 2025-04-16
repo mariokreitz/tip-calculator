@@ -60,6 +60,7 @@ class Calculator {
     target.classList.add("active");
     if (!this._isValidUserInput(numberOfPeople, target)) {
       // this._resetCalculator();
+      this.billElement.style.border = "1px solid #ff5656";
       return;
     }
 
@@ -103,10 +104,10 @@ class Calculator {
     const isDiscountValid = this._isValidDiscount(target) || Number(this.customTipElement.value) > 0 || this.customTipElement.value === "";
 
     if (!isPeopleValid) {
-      this._showError();
+      this._showError(this.peopleElement);
       return false;
     }
-    this._hideError();
+    this._hideError(this.peopleElement);
 
     const isCustomTip = target.id === "custom-tip";
     if (!isCustomTip) this._resetCustomTip();
@@ -116,14 +117,14 @@ class Calculator {
     return result;
   }
 
-  _showError() {
+  _showError(element) {
     this.errorElement.classList.remove("d_none");
-    this.peopleElement.style.border = "1px solid #ff5656";
+    element.style.border = "1px solid #ff5656";
   }
 
-  _hideError() {
+  _hideError(element) {
     this.errorElement.classList.add("d_none");
-    this.peopleElement.style.border = "none";
+    element.style.border = "none";
   }
 
   _isValidDiscount(target) {
