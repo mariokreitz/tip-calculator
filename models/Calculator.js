@@ -81,7 +81,8 @@ class Calculator {
   }
 
   _calculateTotalAmountPerPerson(billAmount, tipPerPerson, numberOfPeople) {
-    return isNaN(billAmount / numberOfPeople + tipPerPerson) ? 0 : billAmount / numberOfPeople + tipPerPerson;
+    const total = billAmount / numberOfPeople + tipPerPerson;
+    return isNaN(total) || total === Infinity ? 0 : total;
   }
 
   _resetActiveButton() {
