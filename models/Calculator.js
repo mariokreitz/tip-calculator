@@ -62,16 +62,12 @@ class Calculator {
     if (!this._isValidUserInput(numberOfPeople, target)) return;
 
     const discount = this._getDiscount(target);
-
     const billAmount = Number(this.billElement.value) || 0;
-
     const tipPerPerson = this._calculateTipPerPerson(billAmount, discount, numberOfPeople);
-
     const totalAmountPerPerson = this._calculateTotalAmountPerPerson(billAmount, tipPerPerson, numberOfPeople);
 
     this.tipAmountElement.textContent = `$${tipPerPerson.toFixed(2)}`;
     this.totalAmountElement.textContent = `$${totalAmountPerPerson.toFixed(2)}`;
-
     this.resetButton.disabled = false;
   }
 
